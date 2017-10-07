@@ -1,7 +1,6 @@
 // Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-using System.Diagnostics;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore.Query.Expressions.Internal;
 using Remotion.Linq.Clauses.Expressions;
@@ -12,7 +11,7 @@ namespace Microsoft.EntityFrameworkCore.Query.ExpressionVisitors
     /// <summary>
     ///     A base expression visitor that ignores Block expressions.
     /// </summary>
-    [DebuggerStepThrough]
+    //[DebuggerStepThrough]
     public abstract class ExpressionVisitorBase : RelinqExpressionVisitor
     {
         /// <summary>
@@ -56,9 +55,9 @@ namespace Microsoft.EntityFrameworkCore.Query.ExpressionVisitors
         protected override Expression VisitLambda<T>(Expression<T> node)
         {
             var newBody = Visit(node.Body);
-            
-            return newBody == node.Body 
-                ? node 
+
+            return newBody == node.Body
+                ? node
                 : Expression.Lambda(newBody, node.Name, node.TailCall, node.Parameters);
         }
     }

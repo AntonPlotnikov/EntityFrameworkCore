@@ -42,7 +42,10 @@ namespace Microsoft.EntityFrameworkCore.Query
         protected override void OnModelCreating(ModelBuilder modelBuilder, DbContext context)
             => new TModelCustomizer().Customize(modelBuilder, context);
 
-        protected override void Seed(NorthwindContext context) => NorthwindData.Seed(context);
+        protected override void Seed(NorthwindContext context)
+        {
+            //NorthwindData.Seed(context);
+        }
 
         public override DbContextOptionsBuilder AddOptions(DbContextOptionsBuilder builder)
             => base.AddOptions(builder).ConfigureWarnings(
